@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'omniauth'
+require 'omniauth-facebook'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -9,12 +11,18 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+
+# OmniAuth.config.logger = Rails.logger
+
 module AvogadrosProject
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    config.middleware.use OmniAuth::Builder do
+      # require 'openid/store/filesystem' 
+      provider :facebook, "232902703507736", "7b39b4a8fcf98efc22b6102740eba7dc"
+    end
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
