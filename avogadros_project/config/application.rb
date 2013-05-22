@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'omniauth'
 require 'omniauth-facebook'
+require 'omniauth-google-oauth2'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -22,6 +23,9 @@ module AvogadrosProject
     config.middleware.use OmniAuth::Builder do
       # require 'openid/store/filesystem' 
       provider :facebook, "232902703507736", "7b39b4a8fcf98efc22b6102740eba7dc"
+      provider :google_oauth2, "152192498175-3vkqcvh0ta22o53fmq00ji373e85nuna.apps.googleusercontent.com", "M_upo7H3X1tHaXEyEL5Et_tI", {
+       :scope => "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me" 
+      } 
     end
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)

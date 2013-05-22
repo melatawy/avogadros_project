@@ -13,7 +13,22 @@ class User < ActiveRecord::Base
       if u.nil?
         u = User.new
         u.facebook_id = auth_hash['uid']
-        u.save
+        u.email = auth_hash['info']['email']
+        u.login = auth_hash['info']['nickname']
+        u.password = "123456"
+        u.password_confirmation = "123456"
+        u.save!
+      end
+    elsif(auth_hash['provider'] == 'google_oauth2')
+      u = User.where("google_id = '#{auth_hash['uid']}'").first
+      if u.nil?
+        u = User.new
+        u.google_id = auth_hash['uid']
+        u.email = auth_hash['info']['email']
+        u.login = auth_hash['uid']
+        u.password = "123456"
+        u.password_confirmation = "123456"
+        u.save!
       end
     end
     u

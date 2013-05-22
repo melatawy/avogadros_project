@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    puts params[:provider]
+    puts auth_hash.to_json
     @user = User.find_or_create_from_auth_hash(auth_hash)
     @current_user = @user
     redirect_to '/'

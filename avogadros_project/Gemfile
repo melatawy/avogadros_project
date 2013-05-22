@@ -41,5 +41,6 @@ gem 'authlogic'
 group :omniauth do
   gem 'omniauth'
   gem 'omniauth-facebook'
+  gem 'omniauth-google-oauth2'
 end
 
